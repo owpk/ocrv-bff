@@ -1,0 +1,4 @@
+include:
+  - project: '${CI_PROJECT_ROOT_NAMESPACE}/ci'
+    ref: master
+    file: '/gitlab/${CI_PROJECT_NAME}.yml'

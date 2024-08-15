@@ -1,0 +1,60 @@
+server:
+  port: 9002
+
+logging:
+  level:
+    root: INFO
+#    com.ocrv.bff: DEBUG
+#    org.springframework.web: DEBUG
+#    org.springframework.security: DEBUG
+#    org.springframework.security.oauth2: DEBUG
+
+
+#czt:
+#  domain: localhost
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb?rewriteBatchedStatements=true
+    username: auth
+    password: auth-secret
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      defer-datasource-initialization: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+  security:
+    oauth2:
+      resource-server:
+        opaque-token:
+          introspection-uri: http://localhost:9000/oauth2/introspect
+          client-id: pn-client
+          client-secret: pn-client-secret
+
+bff:
+  service:
+    oauth2:
+      domain: localhost
+      port: 9000
+      prefix: /oauth2
+    fs:
+      domain: localhost
+      port: 8080
+      prefix: /fs
+    pn:
+      domain: localhost
+      port: 8081
+      prefix: /pn
+    portal:
+      domain: localhost
+      port: 9000
+      prefix: /portal
+    gateway:
+      domain: localhost
+      port: 8082
+      prefix: /gateway
